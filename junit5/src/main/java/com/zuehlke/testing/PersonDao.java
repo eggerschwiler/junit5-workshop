@@ -37,7 +37,7 @@ public class PersonDao {
 		CriteriaQuery<Person> criteriaQuery = criteriaBuilder.createQuery(Person.class);
 		Root<Person> root = criteriaQuery.from(Person.class);
 		ParameterExpression<String> parameter = criteriaBuilder.parameter(String.class);
-		criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("name"), parameter));
+		criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("lastName"), parameter));
 
 		TypedQuery<Person> query = em.createQuery(criteriaQuery);
 		query.setParameter(parameter, name);
