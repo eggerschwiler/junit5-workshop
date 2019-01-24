@@ -1,37 +1,37 @@
 package com.zuehlke.testing.company;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExternalResource;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.AfterEachCallback;
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
 import java.util.Collection;
 import java.util.LinkedList;
 
-import static org.junit.Assert.assertEquals;
-
-public class CompanyDaoTest {
+class CompanyDaoTest {
 
     private CompanyDao dao = new CompanyDao();
 
-    @Rule
-    public CompanyResource companyResource = new CompanyResource();
+    @RegisterExtension
+    CompanyResource companyResource = new CompanyResource();
 
     @Test
-    public void find() {
+    void find() {
         // arrange
         Company expected = companyResource.createCompany("Zuehlke Engineering AG");
         // act
         Company result = dao.find(expected.getName());
         // assert
-        assertEquals(expected.getName(), result.getName());
+        Assertions.assertEquals(expected.getName(), result.getName());
     }
 
-    private class CompanyResource extends ExternalResource {
+    private class CompanyResource implements AfterEachCallback {
 
         private CompanyDao dao = new CompanyDao();
         private Collection<Company> companies = new LinkedList<Company>();
 
-        public Company createCompany(String name) {
+        Company createCompany(String name) {
             final Company company = new Company(name);
             dao.save(company);
             companies.add(company);
@@ -39,12 +39,10 @@ public class CompanyDaoTest {
         }
 
         @Override
-        protected void after() {
+        public void afterEach(ExtensionContext context) throws Exception {
             for (Company company : companies) {
                 dao.delete(company);
             }
-            super.after();
         }
-
     }
 }

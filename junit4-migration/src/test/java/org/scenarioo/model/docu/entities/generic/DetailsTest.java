@@ -1,27 +1,27 @@
 package org.scenarioo.model.docu.entities.generic;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class DetailsTest {
+class DetailsTest {
 
     private Details testee = new Details();
 
     @Test
-    public void whenDetailIsAdded_itCanBeRetrieved() {
+    void whenDetailIsAdded_itCanBeRetrieved() {
         //act
         testee.addDetail("DetailKey", "DetailValue");
         //assert
-        assertEquals("value not found","DetailValue", testee.getDetail("DetailKey"));
+        assertEquals("DetailValue", testee.getDetail("DetailKey"), "value not found");
     }
 
     @Test
-    public void whenDetailIsAdded_DetailsIsNotEmpty() {
+    void whenDetailIsAdded_DetailsIsNotEmpty() {
         //act
         testee.addDetail("DetailKey", "DetailValue");
         //assert
-        assertFalse("Details is empty",testee.isEmpty());
+        assertFalse(testee.isEmpty(), "Details is empty");
     }
 
 }

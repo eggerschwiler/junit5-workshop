@@ -1,44 +1,42 @@
 package org.scenarioo.api.rules;
 
-import static org.junit.Assert.*;
-
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.rules.ExpectedException;
 import org.scenarioo.api.exception.IllegalCharacterException;
 import org.scenarioo.model.docu.entities.generic.Details;
 import org.scenarioo.model.docu.entities.generic.ObjectDescription;
 
-public class DetailsCheckerTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+class DetailsCheckerTest {
 	
 	private static final String ILLEGAL_IDENTIFIER = "/illegal";
 	private static final String LEGAL_IDENTIFIER = "legal";
 
-	@Rule
-	public ExpectedException thrown = ExpectedException.none();
-	
 	@Test
-	public void ifDetailsIsNull_theCheckPasses() {
+	void ifDetailsIsNull_theCheckPasses() {
 		DetailsChecker.checkIdentifiers(null);
 	}
 	
 	@Test
-	public void ifAllIdentifiersAreValid_theCheckPasses() {
+	void ifAllIdentifiersAreValid_theCheckPasses() {
 		DetailsChecker.checkIdentifiers(getDetailsWithValidIdentifiers());
 	}
 	
 	@Test
-	public void ifThereIsAnInvalidObjectType_anExceptionIsThrown() {
-		thrown.expect(IllegalCharacterException.class);
-		thrown.expectMessage("Identifier /illegal contains illegal characters.");
-		DetailsChecker.checkIdentifiers(getDetailsWithInvalidObjectType());
+	void ifThereIsAnInvalidObjectType_anExceptionIsThrown() {
+		IllegalCharacterException e = assertThrows(IllegalCharacterException.class,
+				() -> DetailsChecker.checkIdentifiers(getDetailsWithInvalidObjectType()));
+		assertEquals("Identifier /illegal contains illegal characters.", e.getMessage());
 	}
 	
 	@Test
-	public void ifThereIsAnInvalidObjectName_anExceptionIsThrown() {
-		thrown.expect(IllegalCharacterException.class);
-		thrown.expectMessage("Identifier /illegal contains illegal characters.");
-		DetailsChecker.checkIdentifiers(getDetailsWithInvalidObjectName());
+	void ifThereIsAnInvalidObjectName_anExceptionIsThrown() {
+		IllegalCharacterException e = assertThrows(IllegalCharacterException.class,
+				() -> DetailsChecker.checkIdentifiers(getDetailsWithInvalidObjectName()));
+		assertEquals("Identifier /illegal contains illegal characters.", e.getMessage());
 	}
 	
 	private Details getDetailsWithInvalidObjectType() {
