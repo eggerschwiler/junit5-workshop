@@ -21,8 +21,6 @@ class LongRunningProcessTest {
         assertEquals("Hello World", result);
     }
 
-
-
     @Test
     void testRun_abortAtTimeout() {
         String result = assertTimeoutPreemptively(Duration.ofMillis(10), LongRunningProcess::run);
