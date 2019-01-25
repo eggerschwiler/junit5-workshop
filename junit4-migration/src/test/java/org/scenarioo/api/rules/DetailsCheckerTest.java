@@ -1,8 +1,6 @@
 package org.scenarioo.api.rules;
 
-import org.junit.Rule;
 import org.junit.jupiter.api.Test;
-import org.junit.rules.ExpectedException;
 import org.scenarioo.api.exception.IllegalCharacterException;
 import org.scenarioo.model.docu.entities.generic.Details;
 import org.scenarioo.model.docu.entities.generic.ObjectDescription;
