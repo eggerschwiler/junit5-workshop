@@ -9,9 +9,7 @@ import java.lang.reflect.Parameter;
 public class PersonResourceExtension implements BeforeEachCallback, AfterEachCallback, ParameterResolver {
 
 	private static final String PERSON_RESOURCE = "personResource";
-
 	private Namespace namespace = Namespace.create("Zuehlke", "Testing", "Workshop");;
-
 
 	@Override
 	public void beforeEach(ExtensionContext context) throws Exception {
@@ -20,8 +18,7 @@ public class PersonResourceExtension implements BeforeEachCallback, AfterEachCal
 
 	@Override
 	public void afterEach(ExtensionContext context) throws Exception {
-		Store store = getStore(context);
-		PersonResource people = (PersonResource) store.get(PERSON_RESOURCE);
+		PersonResource people = (PersonResource) getStore(context).get(PERSON_RESOURCE);
 		people.cleanUp();
 	}
 
@@ -29,7 +26,6 @@ public class PersonResourceExtension implements BeforeEachCallback, AfterEachCal
 	public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext)
 			throws ParameterResolutionException {
 		Parameter parameter = parameterContext.getParameter();
-
 		return PersonResource.class.equals(parameter.getType());
 	}
 
