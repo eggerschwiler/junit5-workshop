@@ -10,6 +10,8 @@ public class Company {
 	private long id;
 	private String name;
 
+	Company() {}
+	
 	public Company(String name) {
 		super();
 		if (name == null) {
