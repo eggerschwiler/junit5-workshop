@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.DynamicContainer.dynamicContainer;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
-class DynamicTestsDemo {
+class DynamicTestsTest {
 
     // This will result in a JUnitException!
     @TestFactory
@@ -50,7 +50,7 @@ class DynamicTestsDemo {
 
     @TestFactory
     Stream<DynamicTest> dynamicTestsFromStream() {
-        return Stream.of("A", "B", "C")
+        return Stream.of("A", "BTest", "C")
                 .map(str -> dynamicTest("test" + str, () -> { /* ... */ }));
     }
 
@@ -95,7 +95,7 @@ class DynamicTestsDemo {
 
     @TestFactory
     Stream<DynamicNode> dynamicTestsWithContainers() {
-        return Stream.of("A", "B", "C")
+        return Stream.of("A", "BTest", "C")
                 .map(input -> dynamicContainer("Container " + input, Stream.of(
                         dynamicTest("not null", () -> assertNotNull(input)),
                         dynamicContainer("properties", Stream.of(

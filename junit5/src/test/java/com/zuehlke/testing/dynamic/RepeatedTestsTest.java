@@ -6,9 +6,9 @@ import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class RepeatedTestsDemo {
+class RepeatedTestsTest {
 
-    private Logger logger = Logger.getLogger(RepeatedTestsDemo.class.getName());
+    private Logger logger = Logger.getLogger(RepeatedTestsTest.class.getName());
 
     @BeforeEach
     void beforeEach(TestInfo testInfo, RepetitionInfo repetitionInfo) {
