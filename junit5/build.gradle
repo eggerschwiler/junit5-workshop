@@ -1,6 +1,6 @@
 apply plugin: 'java'
 
-ext.junit5Version	= '5.3.2'
+ext.junit5Version	= '5.4.2'
 
 apply plugin: "java"
 
@@ -9,7 +9,9 @@ repositories {
 }
 
 test {
-	useJUnitPlatform()
+	useJUnitPlatform() {
+		excludeTags 'slow'
+	}
 
 	testLogging {
 		events "passed", "skipped", "failed"
