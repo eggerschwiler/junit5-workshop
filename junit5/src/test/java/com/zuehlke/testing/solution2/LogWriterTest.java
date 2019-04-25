@@ -1,5 +1,6 @@
-package com.zuehlke.testing.exercise2;
+package com.zuehlke.testing.solution2;
 
+import com.zuehlke.testing.exercise2.LogWriter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
