@@ -1,4 +1,4 @@
-package com.zuehlke.testing.solution5;
+package com.zuehlke.testing.solution6;
 
 import org.junit.jupiter.api.Test;
 
