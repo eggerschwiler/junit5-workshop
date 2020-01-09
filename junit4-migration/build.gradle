@@ -47,14 +47,7 @@ dependencies {
     implementation 'org.apache.commons:commons-lang3:3.0.1'
     implementation 'commons-io:commons-io:1.3.2'
     implementation 'commons-codec:commons-codec:1.2'
-    implementation 'log4j:log4j:1.2.17'
-
-    //import a BOM to ensure that compatible versions of the JUnit 5 library are used
-    implementation platform("org.junit:junit-bom:${junit5Version}")
-
-    // JUnit Jupiter API and TestEngine implementation
-    testImplementation("org.junit.jupiter:junit-jupiter-api")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    implementation 'org.apache.logging.log4j:log4j-core:2.13.0'
 
     implementation 'org.hibernate:hibernate-core:5.2.10.Final'
     implementation 'javax.xml.bind:jaxb-api:2.2.11'
